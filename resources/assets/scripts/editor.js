@@ -5,6 +5,8 @@ import {
   registerBlockStyle,
 } from '@wordpress/blocks';
 
+import './blocks/demo';
+
 domReady(() => {
   unregisterBlockStyle('core/button', 'outline');
 
