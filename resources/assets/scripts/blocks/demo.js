@@ -1,4 +1,5 @@
 import { registerBlockType } from '@wordpress/blocks'
+import classNames from 'classnames'
 
 registerBlockType('foo/test', {
   title: 'Testblock',
