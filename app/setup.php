@@ -35,7 +35,11 @@ add_action('wp_enqueue_scripts', function () {
  * @return void
  */
 add_action('enqueue_block_editor_assets', function () {
+    wp_register_script('sage/vendor.js', asset('scripts/vendor.js')->uri(), ['jquery'], null, true);
+
     if ($manifest = asset('scripts/manifest.asset.php')->get()) {
+        $manifest['dependencies'][] = 'sage/vendor.js';
+
         wp_enqueue_script(
             'sage/editor.js',
             asset('scripts/editor.js')->uri(),
@@ -43,7 +47,7 @@ add_action('enqueue_block_editor_assets', function () {
             $manifest['version']
         );
 
-        wp_add_inline_script('sage/editor.js', asset('scripts/manifest.js')->contents(), 'before');
+        wp_add_inline_script('sage/vendor.js', asset('scripts/manifest.js')->contents(), 'before');
     }
 
     wp_enqueue_style('sage/editor.css', asset('styles/editor.css')->uri(), false, null);
